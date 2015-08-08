@@ -1,0 +1,30 @@
+{
+    "name": "diversen/simple-php-translation",
+    "type": "library",
+    "description": "simple solution for doing translation, extracting translations, and doing auto translation through google",
+    "homepage": "http://github.com/diversen/simple-php-github-api",
+    "keywords": ["translate", "translation", "I18n", "simple"],
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "Dennis Iversen",
+            "email": "dennis.iversen@gmail.com",
+            "homepage": "http://www.coscms.org",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0",
+        "diversen/simple-php-classes": "~1.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "diversen\\": "src/"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    }
+}
