@@ -1,9 +1,10 @@
-# Load translations
+# Brief Overview
 
 > Note: Example follows default settings. Settings can be changed. But if
-> You are starting a new project, then you should follow this convention. 
+> You are starting a new project, then you could follow this convention
+> for ease of use.  
 
-Translation are placed in files called 
+Translations are placed in files called 
 
     lang/en/language.php
     lang/da/language.php
@@ -30,6 +31,7 @@ And this file could consists of
     $LANG['Welcome to my blog'] = 'Velkommen til min blog';
 ~~~
 
+# Load language
 
 ~~~.php
 use diversen\lang;
@@ -40,17 +42,21 @@ $l = new lang();
 // modules/account/lang
 // modules/blog/lang
 // and etc. 
+
 $l->setDirsInsideDir("modules/*");
 
 // Look for language files inside, e.g.: 
 // templates/main/lang/
 // templates/sub/lang/
+
 $l->setDirsInsideDir("htdocs/templates/*");
 
 // Set a single dir
+
 $l->setSingleDir("vendor/diversen/simple-php-classes");
 
 // load language. E.g. danish ('da')
+// Will load all 'da' files from above dirs.
 
 $l->loadLanguage('da);
 
@@ -61,12 +67,12 @@ $l->loadLanguage('da);
 
 ~~~.php
 
-use diversen\lang;
-
 // simple
+
 echo lang::translate('Here is a text');
 
-// with substitution and a span to indicate that a part of a string does not have to be translated
+// with substitution and a span to indicate that a part of a string should not be translated
+
 echo lang::translate('User with ID <span class="notranslate">{ID}</span> has been locked!', array ('ID' => $id))
 
 ~~~
@@ -77,6 +83,8 @@ Will can extract all `lang::translate` calls, and add the values to a translate 
 
 ~~~.php
 use diversen\translate\extractor;
+
+// same pattern as above for extraction
 
 $e = new extractor();
 $e->defaultLanguage ='en'; // which language will we extract to
@@ -91,6 +99,8 @@ $e->updateLang();
 ~~~.php
 
 use diversen\translate\google;
+
+// same pattern as above for google auto translation.
 
 $t = new google();
 $t->target = 'da'; // danish
