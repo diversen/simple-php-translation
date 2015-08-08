@@ -17,7 +17,7 @@ $LANG['Welcome to my blog'] = 'Welcome to my blog';
 
 A Danish translation could be found in: 
 
-    blog/lang/en/language.php
+    blog/lang/da/language.php
 
 And this file could consists of 
 
@@ -57,6 +57,8 @@ $l->loadLanguage('da);
 
 ~~~.php
 
+use diversen\lang;
+
 // simple
 echo lang::translate('Here is a text');
 
@@ -83,6 +85,9 @@ $e->updateLang();
 # Auto translate translations using google
 
 ~~~.php
+
+use diversen\translate\google;
+
 $t = new google();
 $t->target = 'da'; // danish
 $t->source = 'en';
