@@ -1,10 +1,19 @@
 # Brief Overview
 
+The `simple-php-translation` is a simple solution for adding 
+translations to your PHP apps. It makes it easy to translate,
+extract translation strings, and to do auto-translation through 
+google translate API.
+
+Install: 
+
+    composer require diversen/simple-php-translation
+
 > Note: Example follows default settings. Settings can be changed. But if
 > You are starting a new project, then you could follow this convention
-> for ease of use.  
+> for ease of use. 
 
-Translations are placed in files called 
+Translations are placed in files called:
 
     lang/en/language.php
     lang/da/language.php
@@ -20,11 +29,11 @@ $LANG = array ();
 $LANG['Welcome to my blog'] = 'Welcome to my blog';
 ~~~
 
-A Danish translation could be found in: 
+A Danish translation should then be found in: 
 
     blog/lang/da/language.php
 
-And this file could consists of 
+And this file could consists of: 
 
 ~~~.php
     $LANG = array ();
@@ -38,16 +47,16 @@ use diversen\lang;
 
 $l = new lang();
 
-// Look for language files inside, e.g.: 
-// modules/account/lang
-// modules/blog/lang
+// Set dirs where we look for language files inside lang dir, e.g.: 
+// modules/account
+// modules/blog
 // and etc. 
 
 $l->setDirsInsideDir("modules/*");
 
-// Look for language files inside, e.g.: 
-// templates/main/lang/
-// templates/sub/lang/
+// Set another dir
+// templates/main
+// templates/sub
 
 $l->setDirsInsideDir("htdocs/templates/*");
 
@@ -79,7 +88,7 @@ echo lang::translate('User with ID <span class="notranslate">{ID}</span> has bee
 
 # Extract strings 
 
-Will can extract all `lang::translate` calls, and add the values to a translate file. 
+This will extract all `lang::translate` calls, and add the values to a translate file. 
 
 ~~~.php
 use diversen\translate\extractor;
@@ -112,4 +121,8 @@ $t->setDirsInsideDir('modules/*');
 $t->setDirsInsideDir('/htdocs/templates/*');  
 $t->setSingleDir("vendor/diversen/simple-php-classes");
 $t->updateLang();
+
+> The `$e->updateLang()` call is clever enough to only add new strings, and remove
+> strings that are removed from the source.  
+
 ~~~
