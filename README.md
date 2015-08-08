@@ -1,8 +1,12 @@
 # Load translations
 
-> Note: Example follows default settings: 
+> Note: Example follows default settings. Settings can be changed. But if
+> You are starting a new project, then you should follow this convention. 
 
-Translation are placed in files called `language.php`. 
+Translation are placed in files called 
+
+    lang/en/language.php
+    lang/da/language.php
 
 E.g. inside a blog
 
@@ -46,7 +50,7 @@ $l->setDirsInsideDir("htdocs/templates/*");
 // Set a single dir
 $l->setSingleDir("vendor/diversen/simple-php-classes");
 
-// load language. e.g. danish ('da')
+// load language. E.g. danish ('da')
 
 $l->loadLanguage('da);
 
