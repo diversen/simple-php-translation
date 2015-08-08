@@ -2,7 +2,7 @@
     "name": "diversen/simple-php-translation",
     "type": "library",
     "description": "simple solution for doing translation, extracting translations, and doing auto translation through google",
-    "homepage": "http://github.com/diversen/simple-php-github-api",
+    "homepage": "https://github.com/diversen/simple-php-translation",
     "keywords": ["translate", "translation", "I18n", "simple"],
     "license": "BSD-3-Clause",
     "authors": [
