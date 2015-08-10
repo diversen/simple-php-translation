@@ -110,7 +110,7 @@ $e->updateLang();
 > the value of a translation key, and leave it as it is. It only updates the translation
 > files, when a new key value is found.
 
-# Auto translate translations using google
+# Auto translate using google translate API
 
 ~~~.php
 
