@@ -41,9 +41,8 @@ class lang extends extractor {
             $file = $dir . '/' . $this->translateDir . "/$language" . "/" . $this->translateFile;
             
             if (file_exists($file)) {
-                include_once $file;
-                if (!empty($LANG)) {
-            
+                include $file;
+                if (!empty($LANG)) {      
                     self::$dict+=$LANG;
                 }
             }

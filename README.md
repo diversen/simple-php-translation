@@ -3,14 +3,16 @@
 The `simple-php-translation` is a simple solution for adding 
 translations to your PHP apps. It makes it easy to translate,
 extract translation strings, and to do auto-translation through 
-google translate API.
+google translate API. It is also easy to add your files to a 
+translation service like [transifex](https://www.transifex.com/)
+when you realise, that you need a human translation. 
 
 Install: 
 
     composer require diversen/simple-php-translation
 
 > Note: Example follows default settings. Settings can be changed. But if
-> You are starting a new project, then you could follow this convention
+> You are starting up a new project, then you could follow this convention
 > for ease of use. 
 
 Translations are placed in files called:
@@ -29,7 +31,7 @@ $LANG = array ();
 $LANG['Welcome to my blog'] = 'Welcome to my blog';
 ~~~
 
-A Danish translation should then be found in: 
+A Danish translation will then be found in: 
 
     blog/lang/da/language.php
 
@@ -67,7 +69,7 @@ $l->setSingleDir("vendor/diversen/simple-php-classes");
 // load language. E.g. danish ('da')
 // Will load all 'da' files from above dirs.
 
-$l->loadLanguage('da);
+$l->loadLanguage('da');
 
 // now all language files are loaded, and we can translate
 ~~~
@@ -88,7 +90,7 @@ echo lang::translate('User with ID <span class="notranslate">{ID}</span> has bee
 
 # Extract strings 
 
-This will extract all `lang::translate` calls, and add the values to a translate file. 
+This will extract all `lang::translate` calls, and add new values to a translate file. 
 
 ~~~.php
 use diversen\translate\extractor;
@@ -102,6 +104,11 @@ $e->setDirsInsideDir('htdocs/templates/*');
 $e->setSingleDir("vendor/diversen/simple-php-classes");
 $e->updateLang();
 ~~~
+
+> The `$e->updateLang()` call only add new strings found in the source, and remove
+> strings that are removed from the source. It also knows if you have changed 
+> the value of a translation key, and leave it as it is. It only updates the translation
+> files, when a new key value is found.
 
 # Auto translate translations using google
 
@@ -121,8 +128,10 @@ $t->setDirsInsideDir('modules/*');
 $t->setDirsInsideDir('/htdocs/templates/*');  
 $t->setSingleDir("vendor/diversen/simple-php-classes");
 $t->updateLang();
-
-> The `$e->updateLang()` call is clever enough to only add new strings, and remove
-> strings that are removed from the source.  
-
 ~~~
+
+> The `$e->updateLang()` call only add new strings found in the source, and remove
+> strings that are removed from the source. It also knows if you have changed 
+> the value of a translation key, and leave it as it is. It only updates the translation
+> files, when a new key value is found.
+
