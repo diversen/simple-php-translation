@@ -54,13 +54,13 @@ $l = new lang();
 // modules/blog
 // and etc. 
 
-$l->setDirsInsideDir("modules/*");
+$l->setDirsInsideDir("modules/");
 
 // Set another dir
 // templates/main
 // templates/sub
 
-$l->setDirsInsideDir("htdocs/templates/*");
+$l->setDirsInsideDir("htdocs/templates/");
 
 // Set a single dir
 
@@ -99,8 +99,8 @@ use diversen\translate\extractor;
 
 $e = new extractor();
 $e->defaultLanguage ='en'; // which language will we extract to
-$e->setDirsInsideDir('modules/*');
-$e->setDirsInsideDir('htdocs/templates/*');
+$e->setDirsInsideDir('modules/');
+$e->setDirsInsideDir('htdocs/templates/');
 $e->setSingleDir("vendor/diversen/simple-php-classes");
 $e->updateLang();
 ~~~
@@ -124,8 +124,8 @@ $t->source = 'en';
 
 $key = 'google api key';
 $t->key = $key;
-$t->setDirsInsideDir('modules/*');
-$t->setDirsInsideDir('/htdocs/templates/*');  
+$t->setDirsInsideDir('modules/');
+$t->setDirsInsideDir('/htdocs/templates/');  
 $t->setSingleDir("vendor/diversen/simple-php-classes");
 $t->updateLang();
 ~~~
