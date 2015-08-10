@@ -60,14 +60,19 @@ class lang extends extractor {
      *                  e.g. array ('100$', 'username')
      *                  in the string to be translated you will then have e.g.
      *                  $LANG['module_string'] = "You will be charged {AMOUNT} dear {USER_NAME}"
+     * @param   array   $options array ('no_translate' => 1) set this and you string
+     *                  will be returned as it is.  
      * @return  string  $str translated string
      *                  if no translation is found in translation registry,
      *                  the string suplied will have "NT: " prepended. 
      *                  (Not Translated)
      * 
      */
-    public static function translate($sentence, $substitute = array()){
+    public static function translate($sentence, $substitute = array(), $options = array ()){
 
+        if (isset($options['no_translate'])) {
+            return $sentence;
+        }
         
         if (isset(self::$dict[$sentence])){
             if (!empty($substitute)){
