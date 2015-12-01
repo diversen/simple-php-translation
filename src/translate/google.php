@@ -20,7 +20,7 @@ class google extends extractor {
      */
     public function updateLang () {
         if (empty($this->key)) {
-            error_log('You will need to set a google API key');
+            error_log("You will need to set a google API key 'google_translate_key' in config.ini");
             return;
         }
         foreach ($this->dirs as $dir) {
