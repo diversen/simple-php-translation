@@ -170,6 +170,7 @@ class extractor {
      */
     public function createLangStrForPath ($dir) {
         $file_list = file::getFileListRecursive($dir);
+        asort($file_list);
 
         // compose a php file
         $translation_str = "<?php\n\n";
@@ -207,6 +208,7 @@ class extractor {
      */
     public function updateLangStrForPath ($dir) {
         $file_list = file::getFileListRecursive($dir);
+        
 
         // compose a php file
         $translation_str = "<?php\n\n";
