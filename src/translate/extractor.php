@@ -188,7 +188,7 @@ class extractor {
                 continue;
             }
             
-            $translation_str.="// Translation of file $file\n\n";
+            $translation_str.= "\n// Translation of file $file\n\n";
 
             // and we add all strings in that file
             foreach ($strings as $trans) {
@@ -239,7 +239,7 @@ class extractor {
                 continue;
             }
             
-            $translation_str.="// Translation of file $file\n\n";
+            $translation_str.= "\n// Translation of file $file\n\n";
 
             // and we add all strings
             foreach ($strings as $trans) { 
