@@ -211,7 +211,7 @@ class extractor {
 
         // compose a php file
         $translation_str = "<?php\n\n";
-        $translation_str.= "$" . $this->translateAryName . " = array();\n\n";
+        $translation_str.= "$" . $this->translateAryName . " = array();\n";
     
         // if lang file does not exists
         $lang_file = $this->getLanguageFileFromDir($dir);
