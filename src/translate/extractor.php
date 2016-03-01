@@ -87,7 +87,6 @@ class extractor {
             $value = $key;
         }
 
-
         // search for apostrophe (') somewhere 
         // in order to know how to write out the array
         $apo_key = strpos($key, "'");
@@ -208,7 +207,7 @@ class extractor {
      */
     public function updateLangStrForPath ($dir) {
         $file_list = file::getFileListRecursive($dir);
-        
+        asort($file_list);
 
         // compose a php file
         $translation_str = "<?php\n\n";
