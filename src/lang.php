@@ -75,12 +75,14 @@ class lang extends extractor {
         }
         
         if (isset(self::$dict[$sentence])){
+            $translated_sentence=self::$dict[$sentence];
+            
             if (!empty($substitute)){
                 foreach ($substitute as $key => $val) {
-                    self::$dict[$sentence] = str_replace('{'.$key.'}', $val, self::$dict[$sentence]);
+                    $translated_sentence = str_replace('{'.$key.'}', $val, $translated_sentence);
                 }
             }
-            return self::$dict[$sentence];
+            return $translated_sentence;
         } else {
             if (!empty($substitute)){
                 foreach ($substitute as $key => $val) {
