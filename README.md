@@ -26,12 +26,10 @@ E.g. inside a blog
 
 This file could consist of this:
 
-<span class="notranslate">
 ~~~.php
 $LANG = array ();
 $LANG['Welcome to my blog'] = 'Welcome to my blog';
 ~~~
-</div>
 
 A Danish translation will then be found in: 
 
