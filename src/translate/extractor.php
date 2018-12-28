@@ -1,7 +1,6 @@
 <?php
 
 namespace diversen\translate;
-use diversen\file;
 
 class extractor {
     
@@ -25,7 +24,7 @@ class extractor {
      * @param string $path modules/*
      */
     public function setDirsInsideDir ($path) {
-        $dirs = file::getDirsGlob($path);
+        $dirs = self::getDirsGlob($path);
         $this->addDirs($dirs);
     }
     
@@ -112,7 +111,7 @@ class extractor {
      * @return boolean $res true if text else false
      */
     private function isText($file) {
-        $prim_mime = file::getPrimMime($file);
+        $prim_mime = self::getPrimMime($file);
         if ($prim_mime == 'text') {
             return true;
         }
@@ -161,6 +160,104 @@ class extractor {
         file_put_contents($file, $str);
   
     }
+
+    /**
+     * Method for getting a file list recursive
+     * @param string $start_dir the directory where we start
+     * @param string $pattern a given fnmatch() pattern
+     * return array $ary an array with the files found. 
+     */
+    public static function getFileListRecursive($start_dir, $pattern = null) {
+        $files = array();
+        if (is_dir($start_dir)) {
+            $fh = opendir($start_dir);
+            while (($file = readdir($fh)) !== false) {
+                // skip hidden files and dirs and recursing if necessary
+                if (strpos($file, '.') === 0) {
+                    continue;
+                }
+                $filepath = $start_dir . '/' . $file;
+                if (is_dir($filepath)) {
+                    $files = array_merge($files, self::getFileListRecursive($filepath, $pattern));
+                } else {
+                    if (isset($pattern)) {
+                        if (fnmatch($pattern, $filepath)) {
+                            array_push($files, $filepath);
+                        }
+                    } else {
+                        array_push($files, $filepath);
+                    }
+                }
+            }
+            closedir($fh);
+        } else {
+            // false if the function was called with an invalid non-directory argument
+            $files = false;
+        }
+        return $files;
+    }
+
+    /**
+     * get dirs in path using DirectoryIterator method
+     * @param string $path
+     * @param array $options you can set a basename which has to be correct
+     *              'basename' => '/path/to/exists'
+     * @return array $dirs 
+     */
+    public static function getDirsGlob($path, $options = array()) {
+        if (file_exists($path)) {
+            $it = new \DirectoryIterator($path);
+        } else {      
+            error_log("$path does not exists in " . __FILE__ . ": " . __LINE__);
+            return array();
+        }
+        
+        $dirs = array ();
+        foreach ($it as $file) {
+            if ($file->isDir() && !$file->isDot()) {
+                $dirs[] = $it->getPathname();
+            }
+        }
+        if (isset($options['basename'])) {
+            foreach ($dirs as $key => $dir) {
+                $dirs[$key] = basename($dir);
+            }
+        }
+        return $dirs;
+    }
+
+    /**
+     * Method for getting mime type of a file
+     * @param string $path
+     * @return string $mime_type 
+     */
+    public static function getMime($path) {
+        $result = false;
+        if (is_file($path) === true) {
+            if (function_exists('finfo_open') === true) {
+                $finfo = finfo_open(FILEINFO_MIME_TYPE);
+                if (is_resource($finfo) === true) {
+                    $result = finfo_file($finfo, $path);
+                }
+                finfo_close($finfo);
+            } else if (function_exists('mime_content_type') === true) {
+                $result = preg_replace('~^(.+);.*$~', '$1', mime_content_type($path));
+            } else if (function_exists('exif_imagetype') === true) {
+                $result = image_type_to_mime_type(exif_imagetype($path));
+            }
+        }
+        return $result;
+    }
+    /**
+     * Return the prim mime type of a file, e.g. 'image'
+     * @param string $file
+     * @return string $mime
+     */
+    public static function getPrimMime($file) {
+        $str = self::getMime($file);
+        $ary = explode('/', $str);
+        return $ary[0];
+    }
     
     /**
      * generates a PHP string with extracted translation
@@ -168,7 +265,7 @@ class extractor {
      * @return string $translation_str
      */
     public function createLangStrForPath ($dir) {
-        $file_list = file::getFileListRecursive($dir);
+        $file_list = self::getFileListRecursive($dir);
         asort($file_list);
 
         // compose a php file
@@ -206,7 +303,7 @@ class extractor {
      * @return string $translation_str
      */
     public function updateLangStrForPath ($dir) {
-        $file_list = file::getFileListRecursive($dir);
+        $file_list = self::getFileListRecursive($dir);
         asort($file_list);
 
         // compose a php file
