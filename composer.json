@@ -14,8 +14,7 @@
         }
     ],
     "require": {
-        "php": ">=5.3.0",
-        "diversen/simple-php-classes": "~1.4"
+        "php": ">=5.3.0"
     },
     "autoload": {
         "psr-4": {
