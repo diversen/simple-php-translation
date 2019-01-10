@@ -1,6 +1,7 @@
 <?php
 
 namespace diversen;
+
 use diversen\translate\extractor;
 
 /**
