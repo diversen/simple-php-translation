@@ -58,13 +58,13 @@ class extractor {
         // by default we look for lang::translate calls
         
         // search for strings inside ''
-        $search = "/$method_name\('([^']+)'/s";
+        $search = "/$method_name\([ ]+'([^']+)'/s";
         preg_match_all($search, $str, $out);
         $strings = $out[1];
         $strings = array_unique($strings);
 
         // search for strings inside ""
-        $search = '/' . $method_name . '\("([^"]+)"/s';
+        $search = '/' . $method_name . '\([ ]+"([^"]+)"/s';
         preg_match_all($search, $str, $out2);
         $strings2 = $out2[1];
         $strings = array_merge($strings, $strings2);
