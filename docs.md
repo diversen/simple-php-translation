@@ -103,7 +103,7 @@ $e->defaultLanguage ='en'; // which language will we extract to
 // Most often you will just use a single dir. Like this
 $e->setSingleDir("app");
 
-// But you can set multiple dirs, like this:
+// Set multiple dirs, like this:
 // This will create translation folders in e.g. modules/blog, modules/account
 // $e->setDirsInsideDir('modules/');
 
@@ -117,21 +117,36 @@ $e->updateLang();
 
 # Auto translate using google translate API
 
+You will need to setup google cloud translation: 
+
+[https://cloud.google.com/translate/docs/basic/setup-basic](https://cloud.google.com/translate/docs/basic/setup-basic)
+
+You will need to enable the composer package `google/cloud-translate`
+
+    composer require google/cloud-translate
+
+Remember to export the GOOGLE_APPLICATION_CREDENTIALS or you will not be able to run the script. 
+
 ~~~.php
 
-use Diversen\Translate\Google;
 
 // same pattern as above for google auto translation.
+use Diversen\Translate\GoogleTranslate;
 
-$t = new google();
+include_once "vendor/autoload.php";
+
+$t = new GoogleTranslate();
 $t->target = 'da'; // danish
 $t->source = 'en';
 
-$key = 'google api key';
-$t->key = $key;
-// $t->setDirsInsideDir('modules/');
 $t->setSingleDir("app");
+
+// Or set multiple dirs like this:
+// This will create translation folders in e.g. modules/blog, modules/account
+// $e->setDirsInsideDir('modules/');
+
 $t->updateLang();
+
 ~~~
 
 > The `$e->updateLang()` call only add new strings found in the source, and remove

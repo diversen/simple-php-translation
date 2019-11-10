@@ -1,10 +1,11 @@
 <?php
 
 namespace Diversen\Translate;
-use Diversen\Translate\Extractor;
-use Diversen\Gtranslate;
 
-class Google extends Extractor {
+use Diversen\Translate\Extractor;
+use Google\Cloud\Translate\TranslateClient;
+
+class GoogleTranslate extends Extractor {
     
     /** source language. Defaults to 'en' */
     public $source = 'en';
@@ -19,10 +20,7 @@ class Google extends Extractor {
      * update a translation
      */
     public function updateLang () {
-        if (empty($this->key)) {
-            error_log("You will need to set a google API key 'google_translate_key' in config.ini");
-            return;
-        }
+
         foreach ($this->dirs as $dir) {
             $this->translate($dir);
         }
@@ -92,25 +90,34 @@ class Google extends Extractor {
         }
         
         // get google translate object
-        $t = $this->getGTranslate();
-        
+        // $t = $this->getGTranslate();
+
+        $translate = new TranslateClient();
+
+
         // compose a php file
         $translation_str = "<?php\n\n";
         $translation_str.= "$" . $this->translateAryName . " = array();\n\n";
         
-        foreach ($source_ary as $key => $val) {
+        foreach ($source_ary as $key => $text) {
             if (isset($target_ary[$key])) {
                 $translation_str.=$this->setCorrectQuotes($key, $target_ary[$key]);
             } else {
                 
-                $translated = $t->translate($val);
+                // $translated = $t->translate($val);
+                $translated_ary = $translate->translate($text, [
+                    'target' => $this->target,
+                    'source' => $this->source,
+                ]);
+
+                $translated = $translated_ary['text'];
                 
                 $this->debug("Translation:\n");
-                $this->debug("$val\n");
+                $this->debug("$text\n");
                 $this->debug("$translated\n\n");
                 
                 $translation_str.= $this->setCorrectQuotes($key, $translated);
-                sleep(1);
+                sleep(0.1);
             }    
         }
         
@@ -149,14 +156,17 @@ class Google extends Extractor {
      * @return gtranslate
      */
     public function getGTranslate () {
+
+        /*
         $options = 
                 array(
-                    'key' => $this->key,
+                    // 'key' => $this->key,
                     'source' => $this->source, 
                     'target' => $this->target);
         
         $t = new Gtranslate();
         $t->setOptions($options);
         return $t;
+        */
     }
 }
