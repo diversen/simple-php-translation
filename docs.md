@@ -20,20 +20,20 @@ Translations are placed in files called:
     lang/en/language.php
     lang/da/language.php
 
-E.g. inside a blog
+E.g. inside your app
 
-    blog/lang/en/language.php
+    app/lang/en/language.php
 
-This file could consist of this:
+The `en/language.php` file could consist of this:
 
 ~~~.php
 $LANG = array ();
 $LANG['Welcome to my blog'] = 'Welcome to my blog';
 ~~~
 
-A Danish translation will then be found in: 
+A Danish translation will could be found in: 
 
-    blog/lang/da/language.php
+    app/lang/da/language.php
 
 And this file could consists of: 
 
@@ -45,31 +45,29 @@ And this file could consists of:
 # Load language
 
 ~~~.php
-use diversen\lang;
+use Diversen\Lang;
 
-$l = new lang();
+$l = new Lang();
 
-// Set dirs where we look for language files inside lang dir, e.g.: 
+// Most often all translations are placed in a single folder
+$l->setSingleDir("app");
+
+// But you can also set dirs, and look for language files inside multiple language dirs, e.g.:
+//  
 // modules/account
 // modules/blog
 // and etc. 
-
-$l->setDirsInsideDir("modules/");
-
-// Set another dir
-// templates/main
-// templates/sub
-
-$l->setDirsInsideDir("htdocs/templates/");
-
-// Set a single dir
-
-$l->setSingleDir("vendor/diversen/simple-php-classes");
+// $l->setDirsInsideDir("modules/");
 
 // load language. E.g. danish ('da')
 // Will load all 'da' files from above dirs.
+//  
+// app/lang/da/language.php
+// $l->loadLanguage('da');
 
-$l->loadLanguage('da');
+// Or english
+// e.g. app/lang/da/language.php
+$l->loadLanguage('en');
 
 // now all language files are loaded, and we can translate
 ~~~
@@ -80,41 +78,51 @@ $l->loadLanguage('da');
 
 // simple
 
-echo lang::translate('Here is a text');
+use Diversen\Lang;
+
+echo Lang::translate('Here is a text');
 
 // with substitution and a span to indicate that a part of a string should not be translated
 
-echo lang::translate('User with ID <span class="notranslate">{ID}</span> has been locked!', array ('ID' => $id))
+echo Lang::translate('User with ID <span class="notranslate">{ID}</span> has been locked!', array ('ID' => $id))
 
 ~~~
 
 # Extract strings 
 
-This will extract all `lang::translate` calls, and add new values to a translate file. 
+This will extract all `Lang::translate` calls, and add new values to a translate file. 
 
 ~~~.php
-use diversen\translate\extractor;
+use Diversen\Translate\Extractor;
 
 // same pattern as above for extraction
 
-$e = new extractor();
+$e = new Extractor();
 $e->defaultLanguage ='en'; // which language will we extract to
-$e->setDirsInsideDir('modules/');
-$e->setDirsInsideDir('htdocs/templates/');
-$e->setSingleDir("vendor/diversen/simple-php-classes");
+
+// Most often you will just use a single dir. Like this
+$e->setSingleDir("app");
+
+// But you can set multiple dirs, like this:
+// This will create a translation folder in e.g. modules/blog, modules/account
+// $e->setDirsInsideDir('modules/');
+
+// This will create a translation folder in e.g. templates/main, templates/test
+// $e->setDirsInsideDir('htdocs/templates/');
+
 $e->updateLang();
 ~~~
 
 > The `$e->updateLang()` call only add new strings found in the source, and remove
 > strings that are removed from the source. It also knows if you have changed 
-> the value of a translation key, and leave it as it is. It only updates the translation
-> files, when a new key value is found.
+> the value of a translation key, then it will leave the value as it is. 
+> It only updates the translation files, when a new key value is found.
 
 # Auto translate using google translate API
 
 ~~~.php
 
-use diversen\translate\google;
+use Diversen\Translate\Google;
 
 // same pattern as above for google auto translation.
 
@@ -134,4 +142,3 @@ $t->updateLang();
 > strings that are removed from the source. It also knows if you have changed 
 > the value of a translation key, and leave it as it is. It only updates the translation
 > files, when a new key value is found.
-
