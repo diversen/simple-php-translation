@@ -104,11 +104,8 @@ $e->defaultLanguage ='en'; // which language will we extract to
 $e->setSingleDir("app");
 
 // But you can set multiple dirs, like this:
-// This will create a translation folder in e.g. modules/blog, modules/account
+// This will create translation folders in e.g. modules/blog, modules/account
 // $e->setDirsInsideDir('modules/');
-
-// This will create a translation folder in e.g. templates/main, templates/test
-// $e->setDirsInsideDir('htdocs/templates/');
 
 $e->updateLang();
 ~~~
@@ -132,9 +129,8 @@ $t->source = 'en';
 
 $key = 'google api key';
 $t->key = $key;
-$t->setDirsInsideDir('modules/');
-$t->setDirsInsideDir('/htdocs/templates/');  
-$t->setSingleDir("vendor/diversen/simple-php-classes");
+// $t->setDirsInsideDir('modules/');
+$t->setSingleDir("app");
 $t->updateLang();
 ~~~
 
