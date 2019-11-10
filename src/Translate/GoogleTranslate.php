@@ -90,10 +90,7 @@ class GoogleTranslate extends Extractor {
         }
         
         // get google translate object
-        // $t = $this->getGTranslate();
-
         $translate = new TranslateClient();
-
 
         // compose a php file
         $translation_str = "<?php\n\n";
@@ -149,24 +146,5 @@ class GoogleTranslate extends Extractor {
      */
     public function debug ($mes) {
         echo $mes;
-    }
-    
-    /**
-     * get a gtranslate object
-     * @return gtranslate
-     */
-    public function getGTranslate () {
-
-        /*
-        $options = 
-                array(
-                    // 'key' => $this->key,
-                    'source' => $this->source, 
-                    'target' => $this->target);
-        
-        $t = new Gtranslate();
-        $t->setOptions($options);
-        return $t;
-        */
     }
 }
