@@ -1,8 +1,8 @@
 <?php
 
-namespace diversen;
+namespace Diversen;
 
-use diversen\translate\extractor;
+use Diversen\Translate\Extractor;
 
 /**
  * File contains contains class creating simple translation
@@ -15,7 +15,7 @@ use diversen\translate\extractor;
  *
  * @package    lang
  */
-class lang extends extractor {
+class Lang extends Extractor {
 
 
     /**
@@ -98,4 +98,11 @@ class lang extends extractor {
             }
         }
     } 
+
+    /**
+     * Shortcut of Lang::translate
+     */
+    public static function t($sentence, $substitute = array(), $options = array ()){
+        return self::translate($sentence, $substitute, $options);
+    }
 }

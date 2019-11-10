@@ -1,8 +1,8 @@
 <?php
 
-namespace diversen\translate;
+namespace Diversen\Translate;
 
-class extractor {
+class Extractor {
     
     var $dirs = [];
     /** file where translation will be placed */

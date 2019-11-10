@@ -18,12 +18,12 @@
     },
     "autoload": {
         "psr-4": {
-            "diversen\\": "src/"
+            "Diversen\\": "src/"
         }
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "1.0-dev"
+            "dev-master": "2.0-dev"
         }
     }
 }

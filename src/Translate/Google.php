@@ -1,10 +1,10 @@
 <?php
 
-namespace diversen\translate;
-use diversen\translate\extractor;
-use diversen\gtranslate;
+namespace Diversen\Translate;
+use Diversen\Translate\Extractor;
+use Diversen\Gtranslate;
 
-class google extends extractor {
+class Google extends Extractor {
     
     /** source language. Defaults to 'en' */
     public $source = 'en';
@@ -155,7 +155,7 @@ class google extends extractor {
                     'source' => $this->source, 
                     'target' => $this->target);
         
-        $t = new gtranslate();
+        $t = new Gtranslate();
         $t->setOptions($options);
         return $t;
     }
