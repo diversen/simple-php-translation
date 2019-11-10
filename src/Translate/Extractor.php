@@ -12,7 +12,7 @@ class Extractor {
     /** name of var inside translateFile LANG */
     var $translateAryName = 'LANG';
     /** pattern to search for */
-    var $extractMethodName = 'lang::translate';
+    var $extractMethodName = 'Lang::translate';
     /** default language. This is default language we extract from */
     var $defaultLanguage ='en';
     
@@ -55,16 +55,18 @@ class Extractor {
         $method_name = $this->extractMethodName;
 
         // find all strings matching inside $this->extractMethodName
-        // by default we look for lang::translate calls
+        // by default we look for Lang::translate calls
         
         // search for strings inside ''
-        $search = "/$method_name\([ ]+'([^']+)'/s";
+        $search = "/$method_name\('([^']+)'/s";
+        
         preg_match_all($search, $str, $out);
         $strings = $out[1];
         $strings = array_unique($strings);
 
         // search for strings inside ""
-        $search = '/' . $method_name . '\([ ]+"([^"]+)"/s';
+        $search = '/' . $method_name . '\("([^"]+)"/s';
+
         preg_match_all($search, $str, $out2);
         $strings2 = $out2[1];
         $strings = array_merge($strings, $strings2);
