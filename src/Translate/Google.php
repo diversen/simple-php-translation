@@ -34,7 +34,7 @@ class Google extends Extractor {
      * @return string $source_file
      */
     public function getSourceFile($dir) {
-        return $source_file = 
+        return 
                 $dir . '/' . 
                 $this->translateDir . "/" . 
                 $this->source . '/' . 
@@ -47,7 +47,7 @@ class Google extends Extractor {
      * @return string $target_file 
      */
     public function getTargetFile($dir) {
-        return $target_file = 
+        return 
                 $this->getTargetDir($dir) . "/" .
                 $this->translateFile;
     }
@@ -58,7 +58,7 @@ class Google extends Extractor {
      * @return string $target_dir
      */
     public function getTargetDir($dir) {
-        return $target_dir = 
+        return 
                 $dir . '/' . 
                 $this->translateDir . "/" . 
                 $this->target;
