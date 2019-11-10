@@ -4,12 +4,12 @@
     "description": "simple solution for doing translation, extracting translations, and doing auto translation through google",
     "homepage": "https://github.com/diversen/simple-php-translation",
     "keywords": ["translate", "translation", "I18n", "simple"],
-    "license": "BSD-3-Clause",
+    "license": "MIT",
     "authors": [
         {
             "name": "Dennis Iversen",
             "email": "dennis.iversen@gmail.com",
-            "homepage": "http://www.coscms.org",
+            "homepage": "https://github.com/diversen",
             "role": "Developer"
         }
     ],
