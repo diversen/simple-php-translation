@@ -3,7 +3,7 @@
 namespace Diversen\Translate;
 
 use Diversen\Translate\Extractor;
-use Google\Cloud\Translate\TranslateClient;
+use Google\Cloud\Translate\V2\TranslateClient;
 
 class GoogleTranslate extends Extractor {
     
