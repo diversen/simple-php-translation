@@ -135,6 +135,9 @@ use Diversen\Translate\GoogleTranslate;
 
 include_once "vendor/autoload.php";
 
+// Google translator needs this. Substitue with path to your own .json file  
+putenv("GOOGLE_APPLICATION_CREDENTIALS=config-locale/pebble-2c949028ebcc.json");
+
 $t = new GoogleTranslate();
 $t->target = 'da'; // danish
 $t->source = 'en';
