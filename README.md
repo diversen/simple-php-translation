@@ -11,6 +11,10 @@ Install:
 
     composer require diversen/simple-php-translation
 
+If you want to use google auto translate, you will need require the following:
+
+    composer require google/cloud-translate
+
 > Note: Example follows default settings. Settings can be changed. But if
 > You are starting up a new project, then you could follow this convention
 > for ease of use. 
