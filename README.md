@@ -11,6 +11,10 @@ Install:
 
     composer require diversen/simple-php-translation
 
+If you want to use google auto translate, you will need require the following:
+
+    composer require google/cloud-translate
+
 > Note: Example follows default settings. Settings can be changed. But if
 > You are starting up a new project, then you could follow this convention
 > for ease of use. 
@@ -134,6 +138,9 @@ Remember to export the GOOGLE_APPLICATION_CREDENTIALS or you will not be able to
 use Diversen\Translate\GoogleTranslate;
 
 include_once "vendor/autoload.php";
+
+// Google translator needs this. Substitue with path to your own .json file  
+putenv("GOOGLE_APPLICATION_CREDENTIALS=config-locale/pebble-2c949028ebcc.json");
 
 $t = new GoogleTranslate();
 $t->target = 'da'; // danish
