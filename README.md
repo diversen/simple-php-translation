@@ -3,9 +3,7 @@
 The `simple-php-translation` is a simple solution for adding 
 translations to your PHP apps. It makes it easy to translate,
 extract translation strings, and to do auto-translation through 
-google translate API. It is also easy to add your files to a 
-translation service like [transifex](https://www.transifex.com/)
-when you realise, that you need a human translation. 
+google translate API. 
 
 Install: 
 
@@ -35,7 +33,7 @@ $LANG = array ();
 $LANG['Welcome to my blog'] = 'Welcome to my blog';
 ~~~
 
-A Danish translation will could be found in: 
+A Danish translation could be found in: 
 
     app/lang/da/language.php
 
