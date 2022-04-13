@@ -65,27 +65,29 @@ class Extractor
         $this->dirs[] = $path;
     }
 
-    private function searchSingleExtractMethod($str, $method_name) {
+    /**
+     * Search for a single translation method name
+     */
+    public function searchSingleExtractMethod ($str = '', $method_name) {
 
         // search for strings inside ''
         $search = "/$method_name\('([^']+)'/s";
+        
         preg_match_all($search, $str, $out);
         $strings = $out[1];
         $strings = array_unique($strings);
 
         // search for strings inside ""
         $search = '/' . $method_name . '\("([^"]+)"/s';
-        preg_match_all($search, $str, $out);
-        $strings2 = $out[1];
-        $strings = array_merge($strings, $strings2);
 
+        preg_match_all($search, $str, $out2);
+        $strings2 = $out2[1];
+        $strings = array_merge($strings, $strings2);
         return $strings;
     }
 
     /**
-     * Search a string for strings that should be translated
-     * @param string $str
-     * @return array $strings 
+     * Search for translation method names
      */
     public function search($str = '')
     {
@@ -93,13 +95,12 @@ class Extractor
 
         foreach($this->extractMethodName as $method_name) {
             $strings_extracted = $this->searchSingleExtractMethod($str, $method_name);
+            $strings = array_merge($strings, $strings_extracted);
         }
-
-        $strings = array_merge($strings, $strings_extracted);
+        
         return $strings;
         
     }
-
 
     /**
      * get a line of the translation file with correct quotes
