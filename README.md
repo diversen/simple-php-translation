@@ -162,11 +162,15 @@ $t->updateLang();
 # Demo 
 
 Inside the [test_app/](test_app/) directory, there is a small php app consisting of 
-one file: [test_app/Main.php](test_app/Main.php). 
+one PHP file: [test_app/Main.php](test_app/Main.php). There is also included javascript
+in this file, and the javascript `Lang.translate` method calls can also be extracted 
+and translated using google. 
 
-Execute the app:
+The Javascript file [test_app/js/lang.js](test_app/js/lang.js) is doing the translation. 
 
-    php test_app/Main.php
+Start the app:
+
+    php -S localhost:8000 -t test_app
 
 I there is no translations then any string will get the "NT: " (Not Translated) prefix. 
 
