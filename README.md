@@ -161,6 +161,10 @@ You can test this by removing the `en` language file directory:
 
     rm -rf test_app/lang/en
 
+You can also test the danish translation at: 
+
+http://localhost:8000?lang=da
+
 Extract the english translation `en` using the script
 [test/extract.php](test/extract.php).
 

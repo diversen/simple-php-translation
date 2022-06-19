@@ -6,9 +6,13 @@ use Diversen\Lang;
 
 $l = new Lang();
 
-// Load translation from this dir
+$language = $_GET['lang'] ?? 'en';
+if (!in_array($language, ['da', 'en'])) {
+    $language = 'en';
+}
+
 $l->setSingleDir(__DIR__);
-$l->loadLanguage('en');
+$l->loadLanguage($language);
 
 ?>
 
@@ -18,11 +22,19 @@ $l->loadLanguage('en');
 
 <p id="message"></p>
 
-
 <script type="module">
 
     import {Lang} from '/js/lang.js';
-    await Lang.load();
+
+    const urlParams = new URLSearchParams(window.location.search);
+    let language = urlParams.get('lang') ?? 'en';
+    const allowedLanguages = ['en', 'da']
+
+    if (!['en', 'da'].includes(language)) { 
+        language = 'en'
+    }
+
+    await Lang.load(language);
 
     let translated_str = Lang.translate('Activity this week: <span class="notranslate">{week_user_total}</span>', {'week_user_total': 100});
     let message = document.getElementById('message');

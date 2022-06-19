@@ -1,5 +1,5 @@
 // Example of how to implement Lang.translate in javascript ...
-import Cookies from 'https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.mjs'
+// import Cookies from 'https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.mjs'
 
 function replaceSubstitutions(str, substitutions) {
 
@@ -17,9 +17,10 @@ class Translate {
         this.Translation = [];
     }
 
-    async load( ) {
-        let language = Cookies.get('language');
-        if (!language) language = 'en';
+    async load(language) {
+        // Maybe control js language using cookies
+        // let language = Cookies.get('language');
+        // if (!language) language = 'en';
 
         const modulePath = '/js/lang/' + language + '/language.js';
 
