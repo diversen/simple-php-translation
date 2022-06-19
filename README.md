@@ -143,7 +143,7 @@ $t->updateLang();
 # Demo 
 
 Inside the [test_app/](test_app/) directory, there is a small php app consisting of 
-one PHP file: [test_app/Main.php](test_app/Main.php). There is also included javascript
+one PHP file: [test_app/index.php](test_app/index.php). There is also included javascript
 in this file. The javascript `Lang.translate` method calls can also be extracted 
 and translated using google. 
 
