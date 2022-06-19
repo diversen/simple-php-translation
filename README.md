@@ -1,9 +1,7 @@
 # Brief Overview
 
 The `simple-php-translation` is a simple solution for adding 
-translations to your PHP apps. It makes it easy to translate,
-extract translation strings, and to do auto-translation through 
-google translate API. 
+translations to your PHP apps.
 
 Install: 
 
@@ -13,20 +11,16 @@ If you want to use google auto translate, require the following:
 
     composer require google/cloud-translate
 
-> Note: Example follows default settings. Settings can be changed. But if
-> You are starting up a new project, then you could follow this convention
-> for ease of use. 
-
-Translations are placed in files called:
+Translations are placed in files named:
 
     lang/en/language.php
     lang/da/language.php
 
-E.g. inside your app
+E.g. inside your app `test_app`
 
-    app/lang/en/language.php
+    test_app/lang/en/language.php
 
-The `en/language.php` file could consist of this:
+The `language.php` file could consist of this:
 
 ~~~.php
 $LANG = array ();
@@ -35,9 +29,9 @@ $LANG['Welcome to my blog'] = 'Welcome to my blog';
 
 A Danish translation could be found in: 
 
-    app/lang/da/language.php
+    test_app/lang/da/language.php
 
-And this file could consists of: 
+And this `language.php` could consist of: 
 
 ~~~.php
     $LANG = array ();
@@ -52,19 +46,12 @@ use Diversen\Lang;
 $l = new Lang();
 
 // Most often all translations are placed in a single folder
-$l->setSingleDir("app");
+$l->setSingleDir("test_app");
 
-// But you can also set dirs, and look for language files inside multiple language dirs, e.g.:
-//  
-// modules/account
-// modules/blog
-// and etc. 
+// But you can also set dirs, and look for language files inside multiple language dirs:
 // $l->setDirsInsideDir("modules/");
 
 // load language. E.g. danish ('da')
-// Will load all 'da' files from above dirs.
-//  
-// app/lang/da/language.php
 // $l->loadLanguage('da');
 
 // Or english
@@ -92,7 +79,7 @@ echo Lang::translate('User with ID <span class="notranslate">{ID}</span> has bee
 
 # Extract strings 
 
-This will extract all `Lang::translate` calls, and add new values to a translate file. 
+This will extract all `Lang::translate` calls, and add new values to translation files. 
 
 ~~~.php
 use Diversen\Translate\Extractor;
@@ -123,14 +110,13 @@ You will need to setup google cloud translation:
 
 [https://cloud.google.com/translate/docs/basic/setup-basic](https://cloud.google.com/translate/docs/basic/setup-basic)
 
-You will need to enable the composer package `google/cloud-translate`
+Then require the composer package `google/cloud-translate`
 
     composer require google/cloud-translate
 
 Remember to export the GOOGLE_APPLICATION_CREDENTIALS or you will not be able to run the script. 
 
 ~~~.php
-
 
 // same pattern as above for google auto translation.
 use Diversen\Translate\GoogleTranslate;
@@ -154,16 +140,11 @@ $t->updateLang();
 
 ~~~
 
-> The `$e->updateLang()` call only add new strings found in the source, and remove
-> strings that are removed from the source. It also knows if you have changed 
-> the value of a translation key, and leave it as it is. It only updates the translation
-> files, when a new key value is found.
-
 # Demo 
 
 Inside the [test_app/](test_app/) directory, there is a small php app consisting of 
 one PHP file: [test_app/Main.php](test_app/Main.php). There is also included javascript
-in this file, and the javascript `Lang.translate` method calls can also be extracted 
+in this file. The javascript `Lang.translate` method calls can also be extracted 
 and translated using google. 
 
 The Javascript file [test_app/js/lang.js](test_app/js/lang.js) is doing the translation. 
@@ -171,6 +152,8 @@ The Javascript file [test_app/js/lang.js](test_app/js/lang.js) is doing the tran
 Start the app:
 
     php -S localhost:8000 -t test_app
+
+Visit http://localhost:8000
 
 I there is no translations then any string will get the "NT: " (Not Translated) prefix. 
 
@@ -186,9 +169,7 @@ Extract the english translation `en` using the script
 The file [test_app/lang/en/language.php](test_app/lang/en/language.php)
 is created as an assoc array. 
 
-Execute the app:
-
-    php test_app/Main.php
+Reload the browser. 
 
 Now all translation are loaded from a file and the prefix 'NT: ' is 
 removed. 
@@ -211,6 +192,10 @@ Now you can run:
 
 The translation will look like this:
 [test_app/lang/da/language.php](test_app/lang/da/language.php)
+
+Finally there is [test/to_js.php](test/to_js.php) script which translates into 
+js module exports, which then can be loaded and translated by the EMS module
+[test_app/js/lang.js](test_app/js/lang.js)
 
 # License
 

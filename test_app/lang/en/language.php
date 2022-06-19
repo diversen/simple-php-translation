@@ -2,6 +2,7 @@
 
 $LANG = array();
 
+
 // Translation of file test_app/index.php
 
 $LANG['Welcome to <span class="notranslate">simple php translation</span>'] = 'Welcome to <span class="notranslate">simple php translation</span>';
