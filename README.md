@@ -46,10 +46,8 @@ And this file could consists of:
 
 # Demo
 
-Inside [test_app](test_app) there is a small php app consisting of 
+Inside the [test_app/](test_app/) directory, there is a small php app consisting of 
 one file: [test_app/Main.php](test_app/Main.php). 
-
-This file loads the `en` (english) translation. 
 
 Execute the app:
 
@@ -57,11 +55,11 @@ Execute the app:
 
 I there is no translations then any string will get the "NT: " (Not Translated) prefix. 
 
-You can test this by removing the `en` language file:
+You can test this by removing the `en` language file directory:
 
     rm -rf test_app/lang/en
 
-Extract strings as the english translation `en` using
+Extract the english translation `en` using the script
 [test/extract.php](test/extract.php).
 
     php test/extract.php
@@ -76,11 +74,11 @@ Execute the app:
 Now all translation are loaded from a file and the prefix 'NT: ' is 
 removed. 
 
-We can add a small script for translating using google translate to translate to danish (`da`). 
+There is also a small script for translating into danish (`da`). 
 [test/google_translate.php](test/google_translate.php)
 
-In order to use this script you will need to setup a `google service account`. 
-You will need to change this part of the script: 
+In order to use this script, you will need to setup a `google service account`. 
+Then change this part of the script: 
 
     putenv("GOOGLE_APPLICATION_CREDENTIALS=google_json/pebble-2c949028ebcc.json");
 
@@ -91,6 +89,11 @@ To:
 Now you can run: 
 
     php test/google_translate.php
+
+The translation will look like this:
+[test_app/lang/da/language.php](test_app/lang/da/language.php)
+
+
 
 # Load language
 
