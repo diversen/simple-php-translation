@@ -159,7 +159,7 @@ $t->updateLang();
 > the value of a translation key, and leave it as it is. It only updates the translation
 > files, when a new key value is found.
 
-## Demo 
+# Demo 
 
 Inside the [test_app/](test_app/) directory, there is a small php app consisting of 
 one file: [test_app/Main.php](test_app/Main.php). 
