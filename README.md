@@ -44,57 +44,6 @@ And this file could consists of:
     $LANG['Welcome to my blog'] = 'Velkommen til min blog';
 ~~~
 
-# Demo
-
-Inside the [test_app/](test_app/) directory, there is a small php app consisting of 
-one file: [test_app/Main.php](test_app/Main.php). 
-
-Execute the app:
-
-    php test_app/Main.php
-
-I there is no translations then any string will get the "NT: " (Not Translated) prefix. 
-
-You can test this by removing the `en` language file directory:
-
-    rm -rf test_app/lang/en
-
-Extract the english translation `en` using the script
-[test/extract.php](test/extract.php).
-
-    php test/extract.php
-
-The file [test_app/lang/en/language.php](test_app/lang/en/language.php)
-is created as an assoc array. 
-
-Execute the app:
-
-    php test_app/Main.php
-
-Now all translation are loaded from a file and the prefix 'NT: ' is 
-removed. 
-
-There is also a small script for translating into danish (`da`). 
-[test/google_translate.php](test/google_translate.php)
-
-In order to use this script, you will need to setup a `google service account`. 
-Then change this part of the script: 
-
-    putenv("GOOGLE_APPLICATION_CREDENTIALS=google_json/pebble-2c949028ebcc.json");
-
-To: 
-
-    putenv("GOOGLE_APPLICATION_CREDENTIALS=path/to/service-account-your-key.json");
-
-Now you can run: 
-
-    php test/google_translate.php
-
-The translation will look like this:
-[test_app/lang/da/language.php](test_app/lang/da/language.php)
-
-
-
 # Load language
 
 ~~~.php
@@ -209,3 +158,58 @@ $t->updateLang();
 > strings that are removed from the source. It also knows if you have changed 
 > the value of a translation key, and leave it as it is. It only updates the translation
 > files, when a new key value is found.
+
+## Demo 
+
+Inside the [test_app/](test_app/) directory, there is a small php app consisting of 
+one file: [test_app/Main.php](test_app/Main.php). 
+
+Execute the app:
+
+    php test_app/Main.php
+
+I there is no translations then any string will get the "NT: " (Not Translated) prefix. 
+
+You can test this by removing the `en` language file directory:
+
+    rm -rf test_app/lang/en
+
+Extract the english translation `en` using the script
+[test/extract.php](test/extract.php).
+
+    php test/extract.php
+
+The file [test_app/lang/en/language.php](test_app/lang/en/language.php)
+is created as an assoc array. 
+
+Execute the app:
+
+    php test_app/Main.php
+
+Now all translation are loaded from a file and the prefix 'NT: ' is 
+removed. 
+
+There is also a small script for translating into danish (`da`). 
+[test/google_translate.php](test/google_translate.php)
+
+In order to use this script, you will need to setup a `google service account`. 
+Then change this part of the script: 
+
+    putenv("GOOGLE_APPLICATION_CREDENTIALS=google_json/pebble-2c949028ebcc.json");
+
+To: 
+
+    putenv("GOOGLE_APPLICATION_CREDENTIALS=path/to/service-account-your-key.json");
+
+Now you can run: 
+
+    php test/google_translate.php
+
+The translation will look like this:
+[test_app/lang/da/language.php](test_app/lang/da/language.php)
+
+# License
+
+MIT © [Dennis Iversen](https://github.com/diversen)
+
+
