@@ -55,7 +55,7 @@ $l->setSingleDir("test_app");
 // $l->loadLanguage('da');
 
 // Or english
-// e.g. app/lang/da/language.php
+// e.g. test_app/lang/da/language.php
 $l->loadLanguage('en');
 
 // now all language files are loaded, and we can translate
@@ -90,7 +90,7 @@ $e = new Extractor();
 $e->defaultLanguage ='en'; // which language will we extract to
 
 // Most often you will just use a single dir. Like this
-$e->setSingleDir("app");
+$e->setSingleDir("test_app");
 
 // Set multiple dirs, like this:
 // This will create translation folders in e.g. modules/blog, modules/account
