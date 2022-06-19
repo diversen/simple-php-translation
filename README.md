@@ -44,6 +44,54 @@ And this file could consists of:
     $LANG['Welcome to my blog'] = 'Velkommen til min blog';
 ~~~
 
+# Demo
+
+Inside [test_app](test_app) there is a small php app consisting of 
+one file: [test_app/Main.php](test_app/Main.php). 
+
+This file loads the `en` (english) translation. 
+
+Execute the app:
+
+    php test_app/Main.php
+
+I there is no translations then any string will get the "NT: " (Not Translated) prefix. 
+
+You can test this by removing the `en` language file:
+
+    rm -rf test_app/lang/en
+
+Extract strings as the english translation `en` using
+[test/extract.php](test/extract.php).
+
+    php test/extract.php
+
+The file [test_app/lang/en/language.php](test_app/lang/en/language.php)
+is created as an assoc array. 
+
+Execute the app:
+
+    php test_app/Main.php
+
+Now all translation are loaded from a file and the prefix 'NT: ' is 
+removed. 
+
+We can add a small script for translating using google translate to translate to danish (`da`). 
+[test/google_translate.php](test/google_translate.php)
+
+In order to use this script you will need to setup a `google service account`. 
+You will need to change this part of the script: 
+
+    putenv("GOOGLE_APPLICATION_CREDENTIALS=google_json/pebble-2c949028ebcc.json");
+
+To: 
+
+    putenv("GOOGLE_APPLICATION_CREDENTIALS=path/to/service-account-your-key.json");
+
+Now you can run: 
+
+    php test/google_translate.php
+
 # Load language
 
 ~~~.php
