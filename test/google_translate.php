@@ -12,5 +12,5 @@ $t = new GoogleTranslate();
 $t->target = 'da'; // danish
 $t->source = 'en';
 
-$t->setSingleDir("app");
+$t->setSingleDir("test_app");
 $t->updateLang();
