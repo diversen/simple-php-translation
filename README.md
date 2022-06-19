@@ -170,9 +170,6 @@ Extract the english translation `en` using the script
 
     php test/extract.php
 
-The file [test_app/lang/en/language.php](test_app/lang/en/language.php)
-is created as an assoc array. 
-
 Reload the browser. 
 
 Now all translation are loaded from a file and the prefix 'NT: ' is 
