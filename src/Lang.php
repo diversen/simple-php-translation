@@ -4,33 +4,21 @@ namespace Diversen;
 
 use Diversen\Translate\Extractor;
 
-/**
- * File contains contains class creating simple translation
- *
- * @package    lang
- */
-
-/**
- * Class for doing simple translations
- *
- * @package    lang
- */
 class Lang extends Extractor {
 
 
     /**
-     * var holding the translation table
-     * @var array $dict
+     * @var array $dict var holding the translation table
      */
-    public static $dict = array ();
-    
+    public static $dict = [];
 
-
-
-    public static $ignore = false;
+    /**
+     * Add 'NT:' before strings. 
+     */
+    public static $hide_nt = false;
     
     /**
-     * loads all language files
+     * Load a language
      * @param string $language, e.g. 'en'
      */
     public function loadLanguage ($language) {
@@ -44,30 +32,19 @@ class Lang extends Extractor {
             if (file_exists($file)) {
                 include $file;
                 if (!empty($LANG)) {      
-                    self::$dict+=$LANG;
+                    self::$dict = array_merge(self::$dict, $LANG);
                 }
             }
         }
     }
 
-
-
     /**
-     * method for doing translations. If a translation is not found we
-     * prepend the untranslated string with 'NT' (needs translation)
+     * Translatate a string
      *
      * @param   string  $sentence the sentence to translate.
      * @param   array   $substitute array with substitution to perform on sentence.
-     *                  e.g. array ('100$', 'username')
-     *                  in the string to be translated you will then have e.g.
-     *                  $LANG['module_string'] = "You will be charged {AMOUNT} dear {USER_NAME}"
      * @param   array   $options array ('no_translate' => 1) set this and you string
      *                  will be returned as it is.  
-     * @return  string  $str translated string
-     *                  if no translation is found in translation registry,
-     *                  the string suplied will have "NT: " prepended. 
-     *                  (Not Translated)
-     * 
      */
     public static function translate($sentence, $substitute = array(), $options = array ()){
 
@@ -91,7 +68,7 @@ class Lang extends Extractor {
                 }
             }
             // don't add NT
-            if (self::$ignore) {
+            if (self::$hide_nt) {
                 return $sentence;
             } else {
                 return "NT: $sentence";
