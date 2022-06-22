@@ -68,7 +68,7 @@ class Extractor
     /**
      * Search for a single translation method name
      */
-    public function searchSingleExtractMethod ($str = '', $method_name) {
+    public function searchSingleExtractMethod ($str, $method_name) {
 
         // search for strings inside ''
         $search = "/$method_name\('([^']+)'/s";
