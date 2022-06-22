@@ -344,6 +344,7 @@ class Extractor
     public function updateLangStrForPath($dir)
     {
         $file_list = self::getFileListRecursive($dir);
+
         asort($file_list);
 
         // compose a php file

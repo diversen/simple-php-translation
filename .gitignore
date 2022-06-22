@@ -1,5 +1,2 @@
-nbproject/*
 vendor/*
 google_json
-composer.lock
-translate.php

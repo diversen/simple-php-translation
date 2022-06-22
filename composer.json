@@ -15,6 +15,10 @@
     ],
     "require": {
         "php": ">=5.3.0"
+        
+    },
+    "require-dev": {
+        "google/cloud-translate": "^1.12"
     },
     "autoload": {
         "psr-4": {
