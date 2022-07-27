@@ -19,6 +19,7 @@ $l->loadLanguage($language);
 <h1><?=Lang::translate('Welcome to <span class="notranslate">simple php translation</span>');?></h1>
 <p><?=Lang::translate("The easiest way to translate PHP apps")?></p>
 <p><?=Lang::translate('I think your name is: <span class="notranslate">{name}</span>', ['name' => 'John Doe'])?>
+<p><?=Lang::translate('Just another test!')?></p>
 
 <p id="message"></p>
 
