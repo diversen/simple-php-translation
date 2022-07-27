@@ -114,7 +114,7 @@ class GoogleTranslate extends Extractor {
                 $this->debug("$translated\n\n");
                 
                 $translation_str.= $this->setCorrectQuotes($key, $translated);
-                sleep(0.1);
+                usleep(1000);
             }    
         }
         
