@@ -25,7 +25,7 @@ class Extractor
     /** 
      * Method names to search for 
      */
-    var $extractMethodName = ['Lang::translate', 'Lang.translate'];
+    var $extractMethodName = ['Lang::translate', 'Lang.translate', 'translate'];
 
     /** 
      * default language. This is default language we extract from 
